@@ -3,7 +3,7 @@ from unittest import TestCase
 from pyutils import partition, strict_zip
 
 
-class TestParition(TestCase):
+class TestPartition(TestCase):
     def test_empty(self):
         self.assertEqual(partition(lambda i: None, []), ([], []))
 
