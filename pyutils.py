@@ -18,3 +18,16 @@ def strict_zip(*iterables):
             e.lens = lens
             raise e
     return zip(*iterables)
+
+
+def bound(value, _min, _max):
+    if _min is None:
+        if _max is None:
+            return value
+        else:
+            return min(value, _max)
+    else:
+        if _max is None:
+            return max(_min, value)
+        else:
+            return sorted((_min, value, _max))[1]

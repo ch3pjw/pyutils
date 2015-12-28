@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from pyutils import partition, strict_zip
+from pyutils import partition, strict_zip, bound
 
 
 class TestPartition(TestCase):
@@ -31,3 +31,21 @@ class TestStrictZip(TestCase):
         self.assertEqual(
             list(strict_zip(x ** 2 for x in range(5))),
             [(x,) for x in (0, 1, 4, 9, 16)])
+
+
+class TestBound(TestCase):
+    def test_no_bounds(self):
+        self.assertEqual(bound(42, None, None), 42)
+
+    def test_min_bound_only(self):
+        self.assertEqual(bound(41, 42, None), 42)
+        self.assertEqual(bound(43, 42, None), 43)
+
+    def test_max_bound_only(self):
+        self.assertEqual(bound(41, None, 42), 41)
+        self.assertEqual(bound(43, None, 42), 42)
+
+    def test_bounded(self):
+        self.assertEqual(bound(40, 41, 43), 41)
+        self.assertEqual(bound(42, 41, 43), 42)
+        self.assertEqual(bound(44, 41, 43), 43)
