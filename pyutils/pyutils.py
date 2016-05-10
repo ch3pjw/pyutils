@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 def partition(predicate, iterable):
     t, f = [], []
     for item in iterable:
@@ -24,6 +27,14 @@ def strict_zip(*iterables):
             e.lens = lens
             raise e
     return zip(*iterables)
+
+
+def duplicates(iterable):
+    c = Counter(iterable)
+    if len(c) == len(iterable):
+        return set()
+    else:
+        return {k for (k, v) in Counter(iterable).items() if v > 1}
 
 
 def bound(value, _min, _max):
