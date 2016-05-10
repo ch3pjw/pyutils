@@ -12,8 +12,8 @@ setup(
     install_requires=[],
     extras_require={
         'dev': [
-            'nose',
             'coverage',
+            'pytest',
         ]
     },
 )
