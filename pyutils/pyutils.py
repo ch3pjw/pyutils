@@ -8,6 +8,12 @@ def partition(predicate, iterable):
     return t, f
 
 
+def partition_mapping(predicate, mapping):
+    mapping_type = type(mapping)
+    a, b = partition(lambda pair: predicate(*pair), mapping.items())
+    return mapping_type(a), mapping_type(b)
+
+
 def strict_zip(*iterables):
     if iterables:
         iterables = tuple(map(tuple, iterables))
