@@ -60,6 +60,9 @@ class InversibleDict(MutableMapping):
         if mapping:
             self.update(mapping)
 
+    def __repr__(self):
+        return '{}({!r})'.format(type(self).__name__, self._map)
+
     def __setitem__(self, key, value):
         if key in self._map:
             self._by_value[self._map[key]].discard(key)
